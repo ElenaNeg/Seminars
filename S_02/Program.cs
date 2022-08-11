@@ -107,8 +107,8 @@ while (index < n)
     index++;
 }
 */
-//Создаем задачку, чтобы произвольно выдавался массив определенной длинны которую мы задаем. 
-
+//Задача 4 Создаем задачку, чтобы произвольно выдавался массив определенной длинны которую мы задаем. 
+/*
 void FillArray(int[] collec)
 {
     int length = collec.Length;
@@ -136,6 +136,59 @@ int[] array = new int[10];
 
 FillArray(array);
 PrintArray(array);
+*/
+// Задача 4.2 Адаптированное решение к предыдущей задаче.
 
+void FillArray(int[] collec)
+{
+    int length = collec.Length;
+    int index = 0;
+    while(index < length)
+    {
+        collec[index] = new Random().Next(1, 10);
+        //index = index + 1;
+        index++;
+    }
+}
+
+void PrintArray(int[] col)
+{
+    int count = col.Length;
+    int position = 0;
+    while(position < count)
+    {
+        Console.WriteLine(col[position]);
+        position++;
+    }
+}
+
+int Indexof(int[] collec, int find)
+{
+    int count = collec.Length;
+    int index = 0;
+    int position = -1;
+
+    while (index < count)
+    {
+        if(collec[index] == find)
+        {
+            position = index;
+            break;
+        }
+        index++;
+    }
+    return position;
+}
+
+int[] array = new int[10];
+
+FillArray(array);
+array[4] = 4;
+array[6] = 4;
+PrintArray(array);
+Console.WriteLine();
+
+int pos = Indexof(array, 444);
+Console.WriteLine(pos);
 
 
