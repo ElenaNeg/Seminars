@@ -1,194 +1,103 @@
 ﻿
-//Задача 1 Найти максимальное из 9 чисел.
+// Задача 1. Напишите программу, которая выводит случайное число из отрезка [10, 99] и показывает наибольшую цифру числа.
 /*
-int a1 = 15;
-int b1 = 21;
-int c1 = 39;
-int a2 = 12;
-int b2 = 2331;
-int c2 = 33;
-int a3 = 13;
-int b3 = 23;
-int c3 = 33;
-
-int max = a1;
-if (b1 > max) max = b1;
-if (c1 > max) max = c1;
-
-if (a2 > max) max = a2;
-if (b2 > max) max = b2;
-if (c2 > max) max = c2;
-
-if (a3 > max) max = a3;
-if (b3 > max) max = b3;
-if (c3 > max) max = c3;
-
-Console.WriteLine(max);
-*/
-//Второй вариант решения задачи - упращенный.
-/*
-int Max(int arg1, int arg2, int arg3)
+int FindBiggestDigit(int number)
 {
-    int result = arg1;
-    if (arg2 > result) result = arg2;
-    if (arg3 > result) result = arg3;
-    return result;
-}
-int a1 = 15;
-int b1 = 23421;
-int c1 = 39;
-int a2 = 12;
-int b2 = 2331;
-int c2 = 33;
-int a3 = 13;
-int b3 = 23;
-int c3 = 33;
-
-//int max1 = Max(a1, b1, c1);
-//int max2 = Max(a2, b2, c2);
-//int max3 = Max(a3, b3, c3);
-//int max = Max(max1, max2, max3);
-// Можно закомментированные строки выше заменить на :
-int max = Max(Max(a1, b1, c1), Max(a2, b2, c2), Max(a3, b3, c3));
-
-Console.WriteLine(max);
-*/
-
-// Задача 2. Попробуем избавится от множества переменных использую для этого массив.
-/*
-int Max(int arg1, int arg2, int arg3)
-{
-    int result = arg1;
-    if (arg2 > result) result = arg2;
-    if (arg3 > result) result = arg3;
-    return result;
-}
-//            0  1  2   3  4  5  6  7  8
-int[] array = {11,211,31,41,15,61,17,18,19};
-
-int max = Max(
-    Max(array[0], array[1], array[2]),
-    Max(array[3], array[4], array[5]),
-    Max(array[6], array[7], array[8]));
-
-Console.WriteLine(max);
-*/
-
-//Задача 3 для любого колличеста элементов массива.
-/*
-int[] array = {1, 12, 31, 4, 15, 16, 17, 18};
-int n = array.Length;
-int find = 18;
-int index = 0;
-while (index < n)
-{
-    if(array[index] == find)
+    int ed = number % 10;
+    int dec = number / 10;
+    
+    if(ed > dec)
     {
-        Console.WriteLine(index);
+        return ed;
     }
-    //index = index + 1; 
-    index++;
+    else
+    {
+        return dec;
+    }
 }
 */
-//Запишем 2 вариант полее лучше.
+//записано не очень красиво для этого запишем немного по другому
 /*
-int[] array = {1, 12, 31, 4, 18, 15, 16, 17, 18};
-int n = array.Length;
-int find = 18;
-int index = 0;
-while (index < n)
+int FindBiggestDigit(int number)
 {
-    if(array[index] == find)
-    {
-        Console.WriteLine(index);
-        break;
-    }
-    //index = index + 1; 
-    index++;
+    int ed = number % 10;
+    int dec = number / 10;
+    int max;
+
+    if(ed > dec)
+    max = ed;
+    else
+    max = dec;
+    
+    return max;
 }
+
+int randomNumber = new Random ().Next(10, 100);
+
+int biggestDigit = FindBiggestDigit(randomNumber);
+Console.WriteLine($"Biggest digit of {randomNumber} is {biggestDigit}");
 */
-//Задача 4 Создаем задачку, чтобы произвольно выдавался массив определенной длинны которую мы задаем. 
+
+//Задача 2. Напишите программу, которая выводит случайное трехзначное число и удаляет вторую цифру этого числа.
 /*
-void FillArray(int[] collec)
+int CutNumber(int number)
 {
-    int length = collec.Length;
-    int index = 0;
-    while(index < length)
-    {
-        collec[index] = new Random().Next(1, 10);
-        //index = index + 1;
-        index++;
-    }
+    int ed = number % 10;
+    int sot = number / 100;
+
+    return sot * 10 + ed;                //int result = sot * 10 + ed;
+                                        //return result;
 }
 
-void PrintArray(int[] col)
+int randomNumber = new Random ().Next(100, 1000); // так как трехзначное число
+
+int newNumber = CutNumber(randomNumber);
+Console.WriteLine($"New version of {randomNumber} is {newNumber}");
+/*
+//Задача 3 Напишите программу, которая будет принимать на вход два числа и выводить, является ли второе число кратным первому. Если второе число не кратно числу первому, то программа выводит остаток от деления.
+
+void IsDivisionable(int num1, int num2)
 {
-    int count = col.Length;
-    int position = 0;
-    while(position < count)
-    {
-        Console.WriteLine(col[position]);
-        position++;
-    }
+    int reminder = num2 % num1;
+    if(reminder == 0)
+        Console.WriteLine($"{num2} is divisionable of {num1}");
+    else
+        Console.WriteLine($"{num2} is not divisionable of {num1}. Reminber is {reminder}");
 }
 
-int[] array = new int[10];
+Console.Write("Input first number: ");
+int n1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input second number: ");
+int n2 = Convert.ToInt32(Console.ReadLine());
 
-FillArray(array);
-PrintArray(array);
+IsDivisionable(n1, n2);
 */
-// Задача 4.2 Адаптированное решение к предыдущей задаче.
+/*
+//Задача 4. Необходимо написать программу которая на вход принимает число и проверяет одновременно, кратно ли оно 7 и 23.
 
-void FillArray(int[] collec)
+bool IsDivis(int number)
 {
-    int length = collec.Length;
-    int index = 0;
-    while(index < length)
-    {
-        collec[index] = new Random().Next(1, 10);
-        //index = index + 1;
-        index++;
-    }
+    if(number % 7 == 0 && number % 23 == 0)
+        return true;
+    else
+        return false;
 }
 
-void PrintArray(int[] col)
+Console.Write("Input number: ");
+int n = Convert.ToInt32(Console.ReadLine());
+
+bool IsDivison = IsDivis(n);
+Console.WriteLine(IsDivison);
+*/
+// Эта же задача, но короче запись.
+
+ bool IsDivis(int number)
 {
-    int count = col.Length;
-    int position = 0;
-    while(position < count)
-    {
-        Console.WriteLine(col[position]);
-        position++;
-    }
+    return number % 7 == 0 && number % 23 == 0;   
 }
 
-int Indexof(int[] collec, int find)
-{
-    int count = collec.Length;
-    int index = 0;
-    int position = -1;
+Console.Write("Input number: ");
+int n = Convert.ToInt32(Console.ReadLine());
 
-    while (index < count)
-    {
-        if(collec[index] == find)
-        {
-            position = index;
-            break;
-        }
-        index++;
-    }
-    return position;
-}
-
-int[] array = new int[10];
-
-FillArray(array);
-array[4] = 4;
-array[6] = 4;
-PrintArray(array);
-Console.WriteLine();
-
-int pos = Indexof(array, 444);
-Console.WriteLine(pos);
-
-
+bool IsDivison = IsDivis(n);
+Console.WriteLine(IsDivison);
