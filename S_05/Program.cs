@@ -187,4 +187,49 @@ int[] myArray = CreateRandomArray(a, min, max);
 ShowArray(myArray);
 int result = CountElements(myArray, min1, max1);
 Console.WriteLine($"колличество элементов массива, находиться в заданном отрезке равно {result}");
+*/ 
+/*
+//Задача 5. необходимо найти произведение пар чисел в одномерном массиве.  
+// парами считаем первый и последний элемент, 2 и предпоследний.
+
+int[] CreateRandomArray(int size, int minValue, int maxValue)
+{
+    int[] newArray = new int[size];
+
+    for (int i = 0; i < size; i++)
+        newArray[i] = new Random().Next(minValue, maxValue +1);
+
+    return newArray;   
+}
+
+void ShowArray(int[] array)
+{
+    for(int i = 0; i < array.Length; i++)
+        Console.Write(array[i] + " ");
+    
+    Console.WriteLine ();
+}
+
+int[] CompositionPairsofElements(int[] array)
+{
+    int[] newArray = new int [array.Length / 2];
+    
+    for(int i = 0; i < array.Length / 2; i++)
+    {
+         newArray[i] = array[i] * array[array.Length - 1 - i];     
+    }
+    return newArray;
+}
+
+Console.WriteLine("Input size for array ");
+int a = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("Input min possible value fo element: ");
+int min = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Input mmax possible value fo element: ");
+int max = Convert.ToInt32(Console.ReadLine());
+
+int[] myArray = CreateRandomArray(a, min, max);
+ShowArray(myArray);
+ShowArray(CompositionPairsofElements(myArray));
 */
